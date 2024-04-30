@@ -88,6 +88,15 @@ class _PokemonHeader extends StatelessWidget {
               height: 160,
               width: 180,
             )),
+                 Positioned(
+                top: 0,
+                right: 0,
+                child: IconButton(
+                  icon: const Icon(Icons.camera_alt_rounded),
+                  color: Colors.white,
+                  iconSize: 50,
+                  onPressed: () {},
+                ))
           ],
         ));
   }
