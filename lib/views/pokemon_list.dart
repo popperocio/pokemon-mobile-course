@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_mobile_course/provider/pokemon_provider.dart';
 import 'package:pokemon_mobile_course/utils/permission_util.dart';
+import 'package:pokemon_mobile_course/widgets/my_pokemons_button.dart';
 import 'package:pokemon_mobile_course/widgets/pokemon_card.dart';
 import 'package:provider/provider.dart';
 
@@ -31,14 +32,28 @@ class _PokemonListViewState extends State<PokemonListView> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : ListView.builder(
-              itemCount: pokemonProvider.pokemons.length,
-              itemBuilder: (context, index) {
-                return PokemonCard(
-                  pokemon: pokemonProvider.pokemons[index],
-                );
-              },
-            ),
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: pokemonProvider.pokemons.length,
+                    itemBuilder: (context, index) {
+                      return PokemonCard(
+                        pokemon: pokemonProvider.pokemons[index],
+                        captures: [],
+                      );
+                    },
+                  ),
+            const SizedBox(height: 30),
+                MyPokemonsButton(
+                   onTap: () =>
+                          Navigator.pushNamed(context, "/my-pokemons")),
+            const SizedBox(height: 50),
+          ],
+        ),
+      ),
       floatingActionButton: CustomFloatingActionButton(
           icon: Icons.add,
           onPressed: () {
