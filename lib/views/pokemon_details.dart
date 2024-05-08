@@ -5,7 +5,7 @@ import 'package:path/path.dart';
 import 'package:pokemon_mobile_course/model/pokemon_model.dart';
 import 'package:pokemon_mobile_course/utils/file_system_utils.dart';
 import 'package:pokemon_mobile_course/utils/utils.dart';
-import 'package:pokemon_mobile_course/views/pokemon_images_slider.dart';
+import 'package:pokemon_mobile_course/widgets/pokemon_images_slider.dart';
 
 class PokemonDetails extends StatelessWidget {
   const PokemonDetails({super.key});
