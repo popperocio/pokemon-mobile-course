@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon_mobile_course/provider/pokemon_provider.dart';
+import 'package:pokemon_mobile_course/views/my_pokemons_view.dart';
 import 'package:pokemon_mobile_course/views/pokemon_details.dart';
 import 'package:pokemon_mobile_course/views/pokemon_list.dart';
 import 'package:pokemon_mobile_course/views/splash_screen.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         "/splashScreen": (context) => const SplashScreen(),
         "/home": (context) => const PokemonListView(),
         "/details": (context) => const PokemonDetails(),
+        "/my-pokemons": (context) => const MyPokemonsView(),
       },
     );
   }

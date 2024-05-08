@@ -6,3 +6,20 @@ Future<void> askPermissions() async {
     Permission.storage,
   ].request();
 }
+
+Future<bool> checkAndAskCameraPermission() async {
+  Permission cameraPermission = Permission.camera;
+
+  PermissionStatus cameraPermissionStatus = await cameraPermission.status;
+  if (cameraPermissionStatus.isDenied) {
+    cameraPermissionStatus = await Permission.camera.request();
+    if (cameraPermissionStatus.isPermanentlyDenied) {
+      await openAppSettings();  
+    }
+  } else if (cameraPermissionStatus.isPermanentlyDenied){
+    await openAppSettings();
+  }
+
+  cameraPermissionStatus = await Permission.camera.status;
+  return cameraPermissionStatus.isGranted;
+}
