@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:pokemon_mobile_course/model/pokemon_model.dart';
 import 'package:pokemon_mobile_course/utils/file_system_utils.dart';
+import 'package:pokemon_mobile_course/utils/permission_util.dart';
 import 'package:pokemon_mobile_course/utils/utils.dart';
 import 'package:pokemon_mobile_course/widgets/pokemon_images_slider.dart';
 
@@ -110,6 +111,8 @@ class _PokemonHeader extends StatelessWidget {
                 color: Colors.white,
                 iconSize: 50,
                 onPressed: () async {
+                  bool canUseCamera = await checkAndAskCameraPermission();
+                  if (!canUseCamera) return;
                   final picker = ImagePicker();
                   final XFile? pickedFile = await picker.pickImage(
                     source: ImageSource.camera,
@@ -131,8 +134,8 @@ class _PokemonHeader extends StatelessWidget {
                   await destination
                       .writeAsBytes(await sourceFile.readAsBytes());
 
-                  print("Saved Image Path: $destinationFile");
-                  print(
+                  debugPrint("Saved Image Path: $destinationFile");
+                  debugPrint(
                       "Saved Image Size: ${await File(destinationFile).length()} bytes");
                 },
               ))
